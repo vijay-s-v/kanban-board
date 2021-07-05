@@ -72,7 +72,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        if($category){
+            $category->name = $request->category["name"];
+            $category->save();
+            return $category;
+        }
+        return "E: No such category exists.";
     }
 
     /**
@@ -83,6 +89,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Need to delete any cards that are in the category
+        $category = Category::find($id);
+        if($category){
+            $category->delete();
+            return "I: Category has been deleted.";
+        }
+        return "E: No such category exists.";
     }
 }

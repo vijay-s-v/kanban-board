@@ -16,8 +16,6 @@ class CreateCardsTable extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->integer('categoryID');
-            $table->integer('orderID');
-            $table->boolean('deleted')->default(false);
             $table->string('name');
             $table->string('desc');
             $table->timestamps();

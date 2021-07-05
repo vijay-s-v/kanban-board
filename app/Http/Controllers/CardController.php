@@ -40,7 +40,6 @@ class CardController extends Controller
         $newCard->desc = $request->card["desc"];
         // Need to set container ID and order ID
         $newCard->categoryID = 1;
-        $newCard->orderID = 1;
         $newCard->save();
         return $newCard;
     }
@@ -76,7 +75,14 @@ class CardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $card = Card::find($id);
+        if($card){
+            $card->name = $request->card["name"];
+            $card->desc = $request->card["desc"];
+            $card->save();
+            return $card;
+        }
+        return "E: No such card exists.";
     }
 
     /**
@@ -87,6 +93,11 @@ class CardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $card = Card::find($id);
+        if($card){
+            $card->delete();
+            return "I: Card has been deleted.";
+        }
+        return "E: No such card exists.";
     }
 }
