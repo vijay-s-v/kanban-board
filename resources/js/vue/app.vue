@@ -1,7 +1,7 @@
 <template>
 	<div class="kanban-board">
 		<div class="heading">
-			<h2 id="title">Kanban Board</h2>
+			<h1 id="title">Kanban Board</h1>
 			<add-category-form
 				v-on:reloadpage="getCategories();"
 			/>
@@ -27,7 +27,6 @@
 <script>
 
 import addCategoryForm from "./addCategoryForm.vue"
-import addCardForm from "./addCardForm.vue"
 import drawPage from "./drawPage.vue"
 
 export default{

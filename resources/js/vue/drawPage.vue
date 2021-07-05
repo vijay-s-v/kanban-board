@@ -23,6 +23,7 @@
 </style>
 
 <script>
+
 import drawCategories from "./drawCategories"
 
 export default{

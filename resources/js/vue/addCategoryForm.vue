@@ -31,7 +31,7 @@ export default{
 					this.$emit( 'reloadpage' );
 				}
 			})
-			.catch(error => { console.log( error );} )
+			.catch(error => { console.log( error ); })
 		}
 	}
 }
