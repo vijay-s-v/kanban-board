@@ -12,16 +12,14 @@
 	@import '../../sass/app.scss';
 
 	.card{
-		width: 250px;
 	}
 
 	.card__button{
 		float: right;
-		margin-top: 3px;
 	}
 
 	.card__name{
-		font-size: 25px;
+		font-size: 18px;
 	}
 
 </style>

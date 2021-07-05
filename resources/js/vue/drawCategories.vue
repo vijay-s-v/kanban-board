@@ -8,13 +8,15 @@
 			<input type="text" v-model="card.name" />
 			<button class="category__button" @click="addCard();">Add Card</button>
 		</div>
+		<div class="spacer"></div>
 		<div v-for="(card, index) in cards" :key="index">
 			<draw-cards
 				:card="card"
 				class="card"
-				v-on:cardchanged="getCards();"
+				v-on:cardchanged="this.getCards();"
 			/>
 		</div>
+		<div class="spacer"></div>
 	</div>
 </template>
 
@@ -36,10 +38,14 @@
 	}
 
 	.card{
+		width: 250px;
+		margin: auto;
+		border: $card-padding solid $card-border-color;
 		background: $card-bg-color;
-		padding-top: $card-padding;
-		padding-left: $card-padding;
-		padding-right: $card-padding;
+	}
+
+	.spacer{
+		height: 10px;
 	}
 
 
@@ -82,7 +88,7 @@ export default{
 			.then(response => {
 				if( response.status == 201 ){
 					this.card.name = '';
-					this.getCards();
+					this.$emit( 'reloadpage' );
 				}
 			})
 			.catch(error => { console.log( error ); })
