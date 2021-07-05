@@ -11,10 +11,10 @@ class CardController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
-    public function index()
+    */
+    public function index($categoryID)
     {
-        return Card::orderBy('id', 'ASC')->get();
+        return Card::where('categoryID', $categoryID)->get();
     }
 
     /**
@@ -38,8 +38,8 @@ class CardController extends Controller
         $newCard = new Card;
         $newCard->name = $request->card["name"];
         $newCard->desc = $request->card["desc"];
-        // Need to set container ID and order ID
-        $newCard->categoryID = 1;
+        // Default category ID, correct ID to be set through drawCategorues.vue
+        $newCard->categoryID = $request->card["categoryID"];
         $newCard->save();
         return $newCard;
     }

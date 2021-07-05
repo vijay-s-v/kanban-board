@@ -12,7 +12,7 @@
 			<draw-cards
 				:card="card"
 				class="card"
-				v-on:cardchanged="$emit('reloadpage')"
+				v-on:cardchanged="getCards();"
 			/>
 		</div>
 	</div>
@@ -35,6 +35,14 @@
 		margin-top: 3px;
 	}
 
+	.card{
+		background: $card-bg-color;
+		padding-top: $card-padding;
+		padding-left: $card-padding;
+		padding-right: $card-padding;
+	}
+
+
 </style>
 
 <script>
@@ -52,8 +60,12 @@ export default{
 		}
 	},
 	props: ['category','cards'],
+	components:{
+		drawCards
+	},
 	methods:{
 		deleteCategory(){
+			// ADD DELETE CARDS
 			axios.delete('api/category/' + this.category.id)
 			.then(response => {
 				if(response.status == 200){
@@ -70,11 +82,19 @@ export default{
 			.then(response => {
 				if( response.status == 201 ){
 					this.card.name = '';
-					this.$emit( 'reloadpage' );
+					this.getCards();
 				}
 			})
 			.catch(error => { console.log( error ); })
+		},
+		getCards(){
+			axios.get('api/card/' + this.category.id)
+			.then(response => { this.cards = response.data	})
+			.catch(error => { console.log( error ); })
 		}
+	},
+	created(){
+		this.getCards();
 	}
 }
 

@@ -29,6 +29,7 @@ Route::prefix('/category')->group(function(){
 
 Route::get('/cards', [CardController::class, 'index']);
 Route::prefix('/card')->group(function(){
+	Route::get('/{categoryID}', [CardController::class, 'index']);
 	Route::post('/store', [CardController::class, 'store']);
 	Route::put('/{id}', [CardController::class, 'update']);
 	Route::delete('/{id}', [CardController::class, 'destroy']);

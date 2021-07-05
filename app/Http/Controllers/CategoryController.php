@@ -89,7 +89,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        // Need to delete any cards that are in the category
         $category = Category::find($id);
         if($category){
             $category->delete();
